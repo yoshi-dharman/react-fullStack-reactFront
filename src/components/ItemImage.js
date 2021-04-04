@@ -10,7 +10,11 @@ function ItemImage(props) {
 
     useEffect(() => {
         if(localStorage.token){
-            axios.get("https://art-share-app.herokuapp.com/like/byimage/"+ props.imageData._id)
+            const data = {
+                user_id : JSON.parse(localStorage.payload)._id,
+                image_id: props.imageData._id
+            }
+            axios.post("https://art-share-app.herokuapp.com/like/byimage/"+ data)
             .then(result => {
                 // console.log(result);
                 if(result.data.length > 0){
