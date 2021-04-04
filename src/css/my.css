@@ -1,0 +1,156 @@
+.bg-dark {
+  background-color: #1e242a !important;
+}
+
+.bg-gray {
+  background-color: #2e343d !important;
+}
+
+.bg-purple {
+  background-color: #937fc7 !important;
+}
+
+.color-purple {
+  color: #937fc7 !important;
+}
+
+html, body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+p {
+  white-space: pre;
+}
+
+.horizontal-line {
+  background-color: #937fc7 !important;
+  width: 1px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.f-bold {
+  font-weight: 400;
+}
+
+.my-maxContainer {
+  max-width: 1764px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.img-object-fit {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.my-btn {
+  background-color: #937fc7 !important;
+  border-color: #937fc7 !important;
+}
+
+.my-btn:hover:not(.disabled) {
+  background-color: #685499 !important;
+  border-color: #685499 !important;
+}
+
+.my-btn-outline {
+  color: #937fc7 !important;
+  border-color: #937fc7 !important;
+}
+
+.my-btn-outline:hover {
+  color: white !important;
+  background-color: #937fc7 !important;
+}
+
+.my-toast {
+  position: absolute;
+  z-index: 1;
+  bottom: 3rem;
+  right: 4rem;
+}
+
+.my-toast button {
+  color: #fff;
+}
+
+.my-progress-purple div {
+  background-color: #937fc7 !important;
+}
+
+.justifiedlayout .item {
+  opacity: 1;
+}
+
+.justifiedlayout .item .thumbnail {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.justifiedlayout .item .thumbnail img {
+  width: 100%;
+}
+
+.justifiedlayout .item .info {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  bottom: 0;
+  left: 0;
+  line-height: 20px;
+  padding: 5px 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  text-align: left;
+  font-size: 14px;
+  opacity: 0;
+  -webkit-transition: opacity ease 0.2s;
+  transition: opacity ease 0.2s;
+}
+
+.justifiedlayout .item:hover .info {
+  opacity: 1;
+}
+
+.item.animate {
+  -webkit-transition: opacity ease 1s;
+  transition: opacity ease 1s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+  opacity: 1;
+}
+
+.justifiedlayout .loading {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  display: none;
+}
+
+.justifiedlayout .loading span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.justifiedlayout.horizontal .loading {
+  width: 200px;
+  height: 100%;
+}
+/*# sourceMappingURL=my.css.map */

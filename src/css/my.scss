@@ -1,0 +1,165 @@
+$dark-color : #1e242a !important;
+$gray-color : #2e343d !important;
+$purple-color: #937fc7 !important;
+$purple-hover: #685499 !important;
+
+.bg-dark {
+    background-color: $dark-color;
+}
+
+.bg-gray {
+    background-color: $gray-color;
+}
+
+.bg-purple {
+    background-color: $purple-color;
+}
+
+.color-purple {
+    color: $purple-color;
+}
+
+
+//css..
+html, body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+p {
+    white-space: pre;
+}
+
+@media (min-width: 1600px) {
+
+}
+
+.horizontal-line{
+    background-color: $purple-color;
+    width: 1px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.f-bold{
+    font-weight: 400;
+}
+
+.my-maxContainer{
+    max-width: 1764px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+  
+.img-object-fit{
+    object-fit: cover;
+}
+
+.my-btn{
+    background-color: $purple-color;
+    border-color: $purple-color;
+}
+
+.my-btn:hover:not(.disabled){
+    background-color: $purple-hover;
+    border-color: $purple-hover;
+}
+
+.my-btn-outline{
+    color: $purple-color;
+    border-color: $purple-color;
+}
+
+.my-btn-outline:hover{
+    color: white !important;
+    background-color: $purple-color;
+}
+
+.my-toast{
+    position: absolute;
+    // top: 5rem;
+    z-index: 1;
+    bottom: 3rem;
+    right: 4rem;
+}
+
+.my-toast button{
+    color: #fff;
+}
+
+.my-progress-purple div{
+    background-color: $purple-color;
+}
+
+// Justify Layout==================================================
+
+.justifiedlayout .item {
+    opacity: 1;
+}
+
+.justifiedlayout .item .thumbnail {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.justifiedlayout .item .thumbnail img {
+    width: 100%;
+}
+
+.justifiedlayout .item .info {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    bottom: 0;
+    left: 0;
+    line-height: 20px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    text-align: left;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity ease 0.2s;
+}
+
+.justifiedlayout .item:hover .info {
+    opacity: 1;
+}
+
+.item.animate {
+    transition: opacity ease 1s;
+    transition-delay: 0.2s;
+    opacity: 1;
+}
+
+
+.justifiedlayout .loading {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+
+.justifiedlayout .loading span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.justifiedlayout.horizontal .loading {
+    width: 200px;
+    height: 100%;
+}
