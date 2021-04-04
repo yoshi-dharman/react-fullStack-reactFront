@@ -22,12 +22,14 @@ function LoginPage(props) {
         })
     }
 
+    
     useEffect(() => {
         if(props.location.state !== undefined){
             // console.log(props.location.state.alert);
             alert(props.location.state.alert);
+            history.push('/login')
         }
-    }, [props])
+    }, [props, history])
 
     return (
         <Container >

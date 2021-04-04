@@ -1,19 +1,25 @@
 import React, { useState, useEffect} from 'react'
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import { Modal, Button, Image, Form, Spinner } from 'react-bootstrap';
 
 import CommentItem from './CommentItem';
 
 function Comment(props) {
+    const history = useHistory();
     const [commentData, setCommentData] = useState([])
-    const [commentLoading, setCommentLoading] = useState(false)
+    const [commentLoading, setCommentLoading] = useState(false);
+
+    const [commentUpload, setCommentUpload] = useState("");
+
+    console.log("commentData " + commentData)
 
     useEffect(() => {
         if(localStorage.token){
             setCommentLoading(true);
             axios.get("https://art-share-app.herokuapp.com/comment/byimage/"+ props.imageData._id)
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 if(result.data.length > 0){
                     setCommentData(result.data);
                     setCommentLoading(false);
@@ -24,6 +30,41 @@ function Comment(props) {
         // console.log("masuk comment")
     }, [props])
 
+    const handleChange= (e) => {
+        setCommentUpload(e.target.value)
+    }
+
+    const commentUploadHandle = (e) => {
+        e.preventDefault();
+        if(localStorage.token){
+            const data = {
+                user_id : JSON.parse(localStorage.payload)._id,
+                image_id: props.imageData._id,
+                comment: commentUpload
+            }
+
+            axios.post("https://art-share-app.herokuapp.com/comment/", data)
+            .then(result => {
+                console.log(result);
+                const newData = {
+                    ...result.data,
+                    user_id: {
+                        name: JSON.parse(localStorage.payload).name
+                    }
+                }
+
+                setCommentData([
+                    ...commentData,
+                    newData
+                ])
+                setCommentUpload("");
+            })
+            .catch(e => console.log(e));
+
+        }else{
+            history.push('/submit');
+        }
+    }
 
     const getTime= () => {
         const date = new Date(props.imageData.time)
@@ -74,18 +115,18 @@ function Comment(props) {
                         
                     </div>
                     <Modal.Footer className="my-modal-footer bg-white">
-                        {/* <Form> */}
+                        <Form className="w-100" onSubmit={commentUploadHandle}>
                         <div className="align-items-center w-100 justify-content-around d-flex">
                         <div className="w-75 mr-2">
-                        <Form.Control id="inlineFormInput" placeholder="Message..."/>
+                        <Form.Control id="inlineFormInput" placeholder="Message..." value={commentUpload} onChange={handleChange}/>
                         </div>
                         <div className="w-25 d-flex justify-content-end">
-                            <Button variant="primary" className="my-btn w-100" onClick={props.handleClose}>
+                            <Button variant="primary" className="my-btn w-100" type="submit">
                                 Reply
                              </Button>
                         </div>
                         </div>
-                        {/* </Form> */}
+                        </Form>
                     
                     
                     </Modal.Footer>
