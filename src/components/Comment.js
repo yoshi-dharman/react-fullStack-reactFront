@@ -13,7 +13,7 @@ function Comment(props) {
     const [commentUpload, setCommentUpload] = useState("");
 
     useEffect(() => {
-        if(localStorage.token){
+        // if(localStorage.token){
             setCommentLoading(true);
             axios.get("https://art-share-app.herokuapp.com/comment/byimage/"+ props.imageData._id)
             .then(result => {
@@ -24,7 +24,7 @@ function Comment(props) {
                 }
             })
             .catch(e => console.log(e))
-        }
+        // }
         // console.log("masuk comment")
     }, [props])
 
