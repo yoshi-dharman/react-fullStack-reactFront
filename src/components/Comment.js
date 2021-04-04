@@ -12,8 +12,6 @@ function Comment(props) {
 
     const [commentUpload, setCommentUpload] = useState("");
 
-    console.log("commentData " + commentData)
-
     useEffect(() => {
         if(localStorage.token){
             setCommentLoading(true);

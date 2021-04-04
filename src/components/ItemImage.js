@@ -1,15 +1,51 @@
-import React, {useState} from 'react'
-
+import React, { useState, useEffect} from 'react'
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import Comment from './Comment';
 
 function ItemImage(props) {
+    const history = useHistory();
     const [like, setLike] = useState(false)
+    const [likeID, setlikeID] = useState("");
+
+    useEffect(() => {
+        if(localStorage.token){
+            axios.get("https://art-share-app.herokuapp.com/comment/byimage/"+ props.imageData._id)
+            .then(result => {
+                // console.log(result);
+                if(result.data.length > 0){
+                    setlikeID(result.data._id);
+                    setLike(true);
+                }
+            })
+            .catch(e => console.log(e))
+        }
+    }, [props])
 
     const likeHandle = () => {
-        if(like){
-            setLike(false);
+        if(localStorage.token){
+            if(like){
+                axios.delete("https://art-share-app.herokuapp.com/like/" + likeID)
+                .then(result => {
+                    console.log(result);
+                    setLike(false);
+                })
+                .catch(e => console.log(e))
+            } else{
+                const data = {
+                    user_id: JSON.parse(localStorage.payload)._id,
+                    image_id: props.imageData._id
+                }
+                axios.post("https://art-share-app.herokuapp.com/like", data)
+                .then(result => {
+                    console.log(result);
+                    setlikeID(result.data._id);
+                    setLike(true);
+                })
+                .catch(e => console.log(e))
+            }
         } else{
-            setLike(true);
+            history.push('/submit');
         }
     }
 
@@ -18,7 +54,6 @@ function ItemImage(props) {
 
     const handleClose = () => setComment(false);
     const handleShow = () => setComment(true);
-
 
 
     // console.log(props.imageData)
