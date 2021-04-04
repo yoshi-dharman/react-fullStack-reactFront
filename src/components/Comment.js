@@ -1,0 +1,85 @@
+import React, { useState, useEffect} from 'react'
+import axios from "axios";
+import { Modal, Button, Image, Form, Spinner } from 'react-bootstrap';
+
+import CommentItem from './CommentItem';
+
+function Comment(props) {
+    const [comment, setComment] = useState({})
+
+    useEffect(() => {
+        if(localStorage.token){
+            // axios.get("https://art-share-app.herokuapp.com/comment/byimage"+ props.imageData._id)
+        }
+        console.log("masuk comment")
+    }, [])
+
+
+    const getTime= () => {
+        const date = new Date(props.imageData.time)
+        return date.toUTCString().slice(0, -7);
+    }
+
+    return (
+        <>
+        <Modal centered scrollable show={props.comment} onHide={props.handleClose} dialogClassName="my-modal">
+            <div className="d-flex justify-content-between h-100">
+                <div className="position-relative w-75 justify-content-center d-flex">
+                    {/* <div className="my-image" style={{backgroundImage: "URL("+props.imageData.image_url+")"}}></div> */}
+                    <Image className="img-fluid my-image card-img-top" src={props.imageData.image_url}></Image>
+                    <div className="my-bg-blur" style={{backgroundImage: `url(${props.imageData.image_url})`}}>asd</div>
+                </div>
+                <div className="w-25 bg-white z-index2 position-relative">
+                    <Modal.Header closeButton>
+                    <Modal.Title className="capitalize">{props.imageData.user_id.name}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="capitalize">
+                        <div className="my-comment-title">{props.imageData.title}</div>
+                        <div className="mt-2 color-lightGray">{getTime()}</div>
+                        <div className="my-like-function">
+                        <span onClick={props.likeHandle} className={!props.like? "" : "d-none"}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-heart heart color-like" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                            </svg>
+                        </span>
+                        <span onClick={props.likeHandle} className={props.like? "" : "d-none"}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-heart-fill heart color-like" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                            </svg>
+                        </span>
+                        </div>
+                    </Modal.Body>
+                    <div className="my-model-comment">
+                        {true === true ? 
+                        <div className="text-center w-100">
+                            <Spinner className="my-5 color-purple" animation="border"/>
+                        </div>
+                        :
+                        <CommentItem />
+                        }
+                        
+                    </div>
+                    <Modal.Footer className="my-modal-footer bg-white">
+                        {/* <Form> */}
+                        <div className="align-items-center w-100 justify-content-around d-flex">
+                        <div className="w-75 mr-2">
+                        <Form.Control id="inlineFormInput" placeholder="Message..."/>
+                        </div>
+                        <div className="w-25 d-flex justify-content-end">
+                            <Button variant="primary" className="my-btn w-100" onClick={props.handleClose}>
+                                Reply
+                             </Button>
+                        </div>
+                        </div>
+                        {/* </Form> */}
+                    
+                    
+                    </Modal.Footer>
+                </div>
+            </div>
+        </Modal>
+        </>
+    )
+}
+
+export default Comment
