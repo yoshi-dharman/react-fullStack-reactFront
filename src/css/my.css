@@ -33,6 +33,22 @@ p {
   white-space: pre;
 }
 
+@media (min-width: 768px) {
+  .md-comment {
+    width: 420px !important;
+  }
+  .md-image {
+    width: 100% !important;
+  }
+  .md-scroll {
+    overflow-y: hidden !important;
+  }
+}
+
+.md-scroll {
+  overflow-y: auto;
+}
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -126,7 +142,11 @@ p {
   border-top: 1px solid #dee2e6;
   position: relative;
   overflow-y: auto;
-  height: 358px;
+  height: 470px;
+}
+
+.my-model-comment-fake {
+  height: 200px;
 }
 
 .my-model-comment-item {

@@ -72,13 +72,13 @@ function Comment(props) {
     return (
         <>
         <Modal centered scrollable show={props.comment} onHide={props.handleClose} dialogClassName="my-modal">
-            <div className="d-flex justify-content-between h-100">
-                <div className="position-relative w-75 justify-content-center d-flex">
+            <div className="d-flex justify-content-between flex-column flex-md-row h-100 md-scroll">
+                <div className="position-relative w-100 md-image justify-content-center d-flex">
                     {/* <div className="my-image" style={{backgroundImage: "URL("+props.imageData.image_url+")"}}></div> */}
                     <Image className="img-fluid my-image card-img-top" src={props.imageData.image_url}></Image>
                     <div className="my-bg-blur" style={{backgroundImage: `url(${props.imageData.image_url})`}}>asd</div>
                 </div>
-                <div className="w-25 bg-white z-index2 position-relative">
+                <div className="w-100 bg-white md-comment z-index2 position-relative">
                     <Modal.Header closeButton>
                     <Modal.Title className="capitalize">{props.imageData.user_id.name}</Modal.Title>
                     </Modal.Header>
@@ -110,7 +110,7 @@ function Comment(props) {
                         commentData.map((item, index) => <CommentItem key={index} commentData={item} />)
                         // <CommentItem />
                         }
-                        
+                        <div className="my-model-comment-fake"></div>
                     </div>
                     <Modal.Footer className="my-modal-footer bg-white">
                         <Form className="w-100" onSubmit={commentUploadHandle}>
