@@ -5,14 +5,24 @@ import { Modal, Button, Image, Form, Spinner } from 'react-bootstrap';
 import CommentItem from './CommentItem';
 
 function Comment(props) {
-    const [comment, setComment] = useState({})
+    const [commentData, setCommentData] = useState([])
+    const [commentLoading, setCommentLoading] = useState(false)
 
     useEffect(() => {
         if(localStorage.token){
-            // axios.get("https://art-share-app.herokuapp.com/comment/byimage"+ props.imageData._id)
+            setCommentLoading(true);
+            axios.get("https://art-share-app.herokuapp.com/comment/byimage/"+ props.imageData._id)
+            .then(result => {
+                console.log(result);
+                if(result.data.length > 0){
+                    setCommentData(result.data);
+                    setCommentLoading(false);
+                }
+            })
+            .catch(e => console.log(e))
         }
-        console.log("masuk comment")
-    }, [])
+        // console.log("masuk comment")
+    }, [props])
 
 
     const getTime= () => {
@@ -50,12 +60,16 @@ function Comment(props) {
                         </div>
                     </Modal.Body>
                     <div className="my-model-comment">
-                        {true === true ? 
+                        {commentLoading === true ? 
                         <div className="text-center w-100">
                             <Spinner className="my-5 color-purple" animation="border"/>
                         </div>
                         :
-                        <CommentItem />
+                        commentData.length === 0 ? 
+                            ""
+                        :
+                        commentData.map((item, index) => <CommentItem key={index} commentData={item} />)
+                        // <CommentItem />
                         }
                         
                     </div>
