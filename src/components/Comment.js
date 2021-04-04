@@ -20,8 +20,8 @@ function Comment(props) {
                 // console.log(result);
                 if(result.data.length > 0){
                     setCommentData(result.data);
-                    setCommentLoading(false);
                 }
+                setCommentLoading(false);
             })
             .catch(e => console.log(e))
         // }
@@ -43,7 +43,7 @@ function Comment(props) {
 
             axios.post("https://art-share-app.herokuapp.com/comment/", data)
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 const newData = {
                     ...result.data,
                     user_id: {

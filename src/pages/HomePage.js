@@ -7,7 +7,7 @@ import ItemImage from '../components/ItemImage';
 import { homeFeedAction } from '../redux/actions/homeFeeds.actions'
 
 // const maxImg = 22;
-const itemCount = 4;
+const itemCount = 5;
 const dataDelay= 1000;
 
 function HomePage() {
@@ -32,7 +32,6 @@ function HomePage() {
         const nextItems = [];
         
         if((nextKey+count) > max){
-            console.log(max + " " + count);
             count = max - nextKey;
             endLinehandle();
         }
@@ -88,7 +87,7 @@ function HomePage() {
             layoutOptions={{
                 align: "justify",
                 margin: 10,
-                column: [1,2],
+                column: [1,4],
                 minSize: 0,
                 maxSize: 0,
             }}

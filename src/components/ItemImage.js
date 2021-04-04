@@ -6,15 +6,15 @@ import Comment from './Comment';
 function ItemImage(props) {
     const history = useHistory();
     const [like, setLike] = useState(false)
-    const [likeID, setlikeID] = useState("");
+    const [likeID, setLikeID] = useState("");
 
     useEffect(() => {
         if(localStorage.token){
-            axios.get("https://art-share-app.herokuapp.com/comment/byimage/"+ props.imageData._id)
+            axios.get("https://art-share-app.herokuapp.com/like/byimage/"+ props.imageData._id)
             .then(result => {
                 // console.log(result);
                 if(result.data.length > 0){
-                    setlikeID(result.data._id);
+                    setLikeID(result.data[0]._id);
                     setLike(true);
                 }
             })
@@ -27,7 +27,7 @@ function ItemImage(props) {
             if(like){
                 axios.delete("https://art-share-app.herokuapp.com/like/" + likeID)
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
                     setLike(false);
                 })
                 .catch(e => console.log(e))
@@ -38,8 +38,8 @@ function ItemImage(props) {
                 }
                 axios.post("https://art-share-app.herokuapp.com/like", data)
                 .then(result => {
-                    console.log(result);
-                    setlikeID(result.data._id);
+                    // console.log(result);
+                    setLikeID(result.data._id);
                     setLike(true);
                 })
                 .catch(e => console.log(e))
