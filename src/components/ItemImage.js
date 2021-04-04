@@ -1,7 +1,7 @@
 import React from 'react'
 
 function ItemImage(props) {
-    // console.log(props.imageData.image_url)
+    console.log(props.imageData)
     if(props.imageData.image_url === undefined){
         // console.log("masuk")
         return 
@@ -18,7 +18,7 @@ function ItemImage(props) {
                     alt="egjs"
                 />
             </div>
-            <div className="info">{`egjs ${props.num}`}</div>
+            <div className="info">{`${props.imageData.title}`}</div>
         </div>
         </>
     )

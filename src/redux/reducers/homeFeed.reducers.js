@@ -1,8 +1,8 @@
 import { IMAGE_REQUEST, IMAGE_FAILED, IMAGE_SUCCESS, } from '../actions/homeFeeds.actions'
 
 const initialState = {
-    imageData: [""],
-    isLoading : false,
+    imageData: [],
+    isLoading : true,
     error: false,
 }
 
