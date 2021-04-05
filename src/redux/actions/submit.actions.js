@@ -35,7 +35,7 @@ export const uploadAction = (image, event, setShow, setImage, setProgressBar) =>
             }
         })
         .then(result => {
-            console.log(result)
+            // console.log(result)
             const fd = new FormData();
             fd.append('key', result.data.imgbb_key);
             fd.append('image', image.file);
