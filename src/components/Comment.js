@@ -13,19 +13,21 @@ function Comment(props) {
     const [commentUpload, setCommentUpload] = useState("");
 
     useEffect(() => {
-        // if(localStorage.token){
-            setCommentLoading(true);
-            axios.get("https://art-share-app.herokuapp.com/comment/byimage/"+ props.imageData._id)
-            .then(result => {
-                // console.log(result);
+        let isMounted = true;
+        setCommentLoading(true);
+        axios.get("https://art-share-app.herokuapp.com/comment/byimage/"+ props.imageData._id)
+        .then(result => {
+            // console.log(result);
+            if (isMounted){
                 if(result.data.length > 0){
                     setCommentData(result.data);
                 }
                 setCommentLoading(false);
-            })
-            .catch(e => console.log(e))
-        // }
-        // console.log("masuk comment")
+            }
+        })
+        .catch(e => console.log(e))
+        
+        return () => { isMounted = false };
     }, [props])
 
     const handleChange= (e) => {

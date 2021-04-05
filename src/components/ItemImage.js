@@ -9,6 +9,7 @@ function ItemImage(props) {
     const [likeID, setLikeID] = useState("");
 
     useEffect(() => {
+        let isMounted = true;
         if(localStorage.token){
             const data = {
                 user_id : JSON.parse(localStorage.payload)._id,
@@ -22,13 +23,16 @@ function ItemImage(props) {
             })
             .then(result => {
                 // console.log(result);
-                if(result.data.length > 0){
-                    setLikeID(result.data[0]._id);
-                    setLike(true);
+                if (isMounted){
+                    if(result.data.length > 0){
+                        setLikeID(result.data[0]._id);
+                        setLike(true);
+                    }
                 }
             })
             .catch(e => console.log(e))
         }
+        return () => { isMounted = false };
     }, [props])
 
     const likeHandle = () => {

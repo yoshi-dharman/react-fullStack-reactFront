@@ -44,6 +44,7 @@ function HomePage() {
 
     useEffect(() => {
         dispatch(homeFeedAction());
+        
     }, [dispatch])
 
     return (
@@ -65,7 +66,7 @@ function HomePage() {
         </Col>
         :
         <>
-        {imageData.length}
+        
         <JustifiedLayout
             className="justifiedlayout container-fluid my-maxContainer"
             loading={
