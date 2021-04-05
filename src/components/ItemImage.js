@@ -14,7 +14,8 @@ function ItemImage(props) {
                 user_id : JSON.parse(localStorage.payload)._id,
                 image_id: props.imageData._id
             }
-            axios.post("https://art-share-app.herokuapp.com/like/byimage/"+ data)
+            console.log(data);
+            axios.post("http://localhost:9999/like/byimage", data)
             .then(result => {
                 // console.log(result);
                 if(result.data.length > 0){
