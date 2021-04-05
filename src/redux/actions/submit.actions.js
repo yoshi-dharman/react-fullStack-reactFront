@@ -106,8 +106,8 @@ export const uploadAction = (image, event, setShow, setImage, setProgressBar) =>
             })
 
         })
-        .catch(e => {
-            console.log(e);
+        .catch(err => {
+            console.log(err);
             dispatch(uploadFailed(err))
         })
 };
