@@ -38,7 +38,11 @@ function ItemImage(props) {
     const likeHandle = () => {
         if(localStorage.token){
             if(like){
-                axios.delete("https://art-share-app.herokuapp.com/like/" + likeID)
+                axios.delete("https://art-share-app.herokuapp.com/like/" + likeID,{
+                    headers: {
+                        "Authorization" : `Bearer ${localStorage.token}`
+                    }
+                })
                 .then(result => {
                     // console.log(result);
                     setLike(false);
@@ -49,7 +53,11 @@ function ItemImage(props) {
                     user_id: JSON.parse(localStorage.payload)._id,
                     image_id: props.imageData._id
                 }
-                axios.post("https://art-share-app.herokuapp.com/like", data)
+                axios.post("https://art-share-app.herokuapp.com/like", data,{
+                    headers: {
+                        "Authorization" : `Bearer ${localStorage.token}`
+                    }
+                })
                 .then(result => {
                     // console.log(result);
                     setLikeID(result.data._id);
