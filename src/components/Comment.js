@@ -41,7 +41,11 @@ function Comment(props) {
                 comment: commentUpload
             }
 
-            axios.post("https://art-share-app.herokuapp.com/comment/", data)
+            axios.post("http://localhost:9999/comment/", data,{
+                headers: {
+                    "Authorization" : `Bearer ${localStorage.token}`
+                }
+            })
             .then(result => {
                 // console.log(result);
                 const newData = {
